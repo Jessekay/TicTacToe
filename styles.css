@@ -1,0 +1,24 @@
+/* Style for the Tic-Tac-Toe game */
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 5px;
+  margin: 20px auto;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightgray;
+  font-size: 2rem;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.cell:hover {
+  background-color: lightblue;
+}

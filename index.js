@@ -71,22 +71,30 @@ const Game = (() => {
   return { startGame, playTurn };
 })();
 
+
 const DisplayController = (() => {
+  const gameBoardElement = document.querySelector('.game-board');
+
   const renderBoard = () => {
     const board = Gameboard.getBoard();
+    gameBoardElement.innerHTML = ''; //Clear previous board rendering
+
     board.forEach((cell, index) => {
-      console.log(`Cell ${index}: ${cell}`);
+      const cellElement = document.createElement('div');
+        cellElement.classList.add('cell');
+        cellElement.textContent = cell;
+        cellElement.addEventListener('click', () => handleClick(index));
+        gameBoardElement.appendChild(cellElement);
     });
   };
 
-  const announceWinner = (winner) => {
-    console.log(`${winner} is the winner!`);
+  const handleClick = (index) => {
+    Game.playTurn(index);
+    renderBoard();
   };
-  return { renderBoard, announceWinner };
+
+  return { renderBoard };
 })();
 
-Game.startGame('Alice', 'Bob');
-
-Game.playTurn(0);
-
-Game.playTurn(1);
+Game.startGame("Alice", "Bob");
+DisplayController.renderBoard();
